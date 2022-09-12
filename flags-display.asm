@@ -1,16 +1,4 @@
 	.LF /Users/ingoschmied/Documents/develop.nosync/assembly/flags-display/flags-display.lst
-;---------------------------------------------------------------------------
-;
-;		Description:
-;
-;           Early attempt to use an interrupt to call a subroutine that
-;           displays the contents of the accumulator and the flags 
-;           register on two seven segment displays and a bar graph LED
-;           respectively. The hardware has a switch to enable/disable 
-;           this functionality.
-;
-;---------------------------------------------------------------------------
-
 	.CR	Z80				;It's a Z80 assembler now
 	.TF /Users/ingoschmied/Documents/develop.nosync/assembly/flags-display/flags-display.int, int
 	.OR $0000
