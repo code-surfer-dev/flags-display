@@ -37,10 +37,34 @@ RESTART:
 
     ;JP USER_PROGRAM    ;Could jump to a program in RAM  
 
-    LD A, $01           ;Simple test in ROM to start with
-LOOP:
+KEYBOARD:               ;The ZX81 keyboard subroutine
+	LD HL, $FFFF        
+	LD BC, $FEFE        
+	IN A, (C)           
+	OR $01
 
-    INC A
-    JR NZ,LOOP
-    HALT
-    
+EACH_LINE:
+	OR $E0
+	LD D, A
+	CPL
+	CP $01
+	SBC A, A
+	OR B
+	AND L
+	LD L, A
+	LD A, H
+	AND D
+	LD h, A
+	RLC b
+	IN A, (C)
+	JR C, EACH_LINE
+	RRA
+	RL H
+	RLA
+	RLA
+	RLA
+	SBC A, A
+	AND $18
+	ADD A, $1f
+	LD (MARGIN), A
+	RET
