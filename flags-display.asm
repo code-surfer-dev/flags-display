@@ -7,6 +7,7 @@ A_DAT		.EQ $00		;PIO PORT A data
 B_DAT		.EQ $01		;PIO PORT B data
 A_CTL		.EQ $02		;PIO PORT A control
 B_CTL   	.EQ $03		;PIO PORT B control
+KYBD_PORT   .EQ $04     ;Use $04 instead of $00 as it it on the ZX81
 
     JP RESTART
 
@@ -40,7 +41,7 @@ RESTART:
 KEYBOARD:               ;The ZX81 keyboard subroutine
 	LD HL, $FFFF        
 	LD BC, $FEFE        
-	IN A, (C)           
+	IN A, (KYBD_PORT)           
 	OR $01
 
 EACH_LINE:
@@ -56,7 +57,7 @@ EACH_LINE:
 	AND D
 	LD h, A
 	RLC b
-	IN A, (C)
+	IN A, (KYBD_PORT)
 	JR C, EACH_LINE
 	RRA
 	RL H
@@ -66,5 +67,12 @@ EACH_LINE:
 	SBC A, A
 	AND $18
 	ADD A, $1f
-	LD (MARGIN), A
-	RET
+	;LD (MARGIN), A
+    ;Replacign the above line with code to display H, L, A
+    ;using the accumulator display port
+
+    LD C, B_DAT
+    OUT (C), H
+    OUT (C), L
+    OUT (B_DAT), A      ;A holds the value of MARGIN       
+	HALT                ;Originally RET
