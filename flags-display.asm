@@ -17,11 +17,11 @@ OUTPUT:
     DI                  ;Disable interrupts
     PUSH BC             ;Push BC on the stack
     PUSH AF             ;Push Flags on the stack
-    POP BC              ;Load B with A, & C with Flags
+    POP BC              ;Load B with A, & load C with Flags
     LD B, C             ;Load Flags into B
-    OUT (A_DAT), A      ;Send A to PORT A
-    LD C, B_DAT         ;Set C to PORT B address
-    OUT (C), B          ;Send F via B to PORT B
+    OUT (B_DAT), A      ;Send A to PORT B
+    LD C, A_DAT         ;Set C to PORT A address
+    OUT (C), B          ;Send F via B to PORT A
     POP BC              ;Restore BC
     EI                  ;Enable interrupts
     RETI
@@ -58,7 +58,7 @@ EACH_LINE:
 	LD h, A
 	RLC b
 	IN A, (KYBD_PORT)
-	JR C, EACH_LINE
+	JR C,EACH_LINE
 	RRA
 	RL H
 	RLA
@@ -68,7 +68,7 @@ EACH_LINE:
 	AND $18
 	ADD A, $1f
 	;LD (MARGIN), A
-    ;Replacign the above line with code to display H, L, A
+    ;Replacing the above line with code to display H, L, A
     ;using the accumulator display port
 
     LD C, B_DAT
