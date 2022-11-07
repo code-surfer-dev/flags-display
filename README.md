@@ -1,4 +1,6 @@
-# Description
+# MARZA Microprocessor Trainer Debug Mode
+
+## Description
 
 The MARZA Microprocessor Trainer uses static RAM instead of dynamic RAM. Since
 the /RFSH output signal of the Z80 microprocessor is solely intended for
@@ -20,7 +22,7 @@ connected via two hexadecimal seven segment LED display drivers (9368) to PORT B
 of a PIO, and the value of the flags register onto a bar graph LED via PORT A of
 a PIO.
 
-# Tools/Dependencies
+## Tools/Dependencies
 
 The assembly file for this project is written using the Z80 microprocessor's
 instruction set, and using the assembler directives/syntax of the free,
