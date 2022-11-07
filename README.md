@@ -19,3 +19,11 @@ then outputs the value of the accumulator onto two seven segment displays
 connected via two hexadecimal seven segment LED display drivers (9368) to PORT B
 of a PIO, and the value of the flags register onto a bar graph LED via PORT A of
 a PIO.
+
+# Tools/Dependencies
+
+The assembly file for this project is written using the Z80 microprocessor's
+instruction set, and using the assembler directives/syntax of the free,
+open-source, [sbasm](https://www.sbprojects.net/sbasm/) assembler. In order to
+use other assemblers some or all of the assembler directives may need to be
+altered.
